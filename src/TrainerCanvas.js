@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import './TrainerCanvas.css'
 
 class TrainerCanvas extends Component {
-  componentDidMount() {
-    var ctx = this.context;
+
+  drawImage(context, src, x, y) {
+    var base_image = new Image();
+    base_image.src = src;
+    base_image.onload = function() {
+      context.drawImage(base_image, x, y);
+    }
+  }
+
+  drawGrid(ctx) {
     const {width, height} = ctx.canvas;
-    ctx.save();
     ctx.beginPath();
     var i = 0;
     var boxsize = parseInt(this.props.boxsize,10);
@@ -21,6 +28,15 @@ class TrainerCanvas extends Component {
     }
     ctx.restore();
   }
+
+  componentDidMount() {
+    var ctx = this.context;
+    ctx.save();
+
+    this.drawGrid(ctx);
+    this.drawImage(ctx, "img/blue.png",0,0);
+  }
+
   render() {
     return (
       <div className="Canvas">
