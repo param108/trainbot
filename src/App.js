@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import TrainerCanvas from './TrainerCanvas';
+import TrainerCanvas from './components/trainercanvas/TrainerCanvas';
 import './App.css';
 
 class App extends Component {
