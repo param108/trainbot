@@ -59,7 +59,8 @@ class TrainerCanvas extends Component {
 
   drawIfRequired(v) {
     if (!v.hasOwnProperty('drawn')) {
-      this.drawImage(this.graphics_context, v.src, v.x,v.y);
+      v.img = this.drawImage(this.graphics_context, v.src, v.x,v.y);
+      v.drawn = true;
       this.graphics_context.restore();
     }
   }
@@ -96,7 +97,7 @@ class TrainerCanvas extends Component {
     objid++;
     objx+=parseInt(this.props.boxsize,10);
     if (objx >= this.props.width) {
-      objy += this.props.boxsize;
+      objy += parseInt(this.props.boxsize,10);
       objx = 0;
     }
     this.props.newObject({id: objid,x: objx, y: objy, src: "img/blue.png" });
