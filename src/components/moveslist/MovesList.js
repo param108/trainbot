@@ -61,7 +61,7 @@ class MovesList extends Component {
     );
 
     return (
-      <div>
+      <div className='codepane'>
       <div>
         {OPTIONS}
       </div>
@@ -72,6 +72,7 @@ class MovesList extends Component {
     );
   }
 }
+
 
 function select(state) {
   return {

@@ -196,7 +196,7 @@ class TrainerCanvas extends Component {
   render() {
     console.log("Render");
     return (
-      <div>
+      <div className='codepane'>
         <div className="Canvas">
             <canvas id={this.props.name} className="CanvasPane" ref={(c) => this.graphics_context = c.getContext('2d')} width={this.props.width} height={this.props.height} />
         </div>
