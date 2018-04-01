@@ -60,6 +60,7 @@ class TrainerCanvas extends Component {
     super(props);
     this.state = {
       objects: [],
+      optionsSet: false,
     };
     // This binding is necessary to make `this` work in the callback
     this.click = this.click.bind(this);
@@ -75,6 +76,10 @@ class TrainerCanvas extends Component {
     var ctx = this.graphics_context;
     ctx.save();
     this.drawGrid(ctx);
+    if (this.state.optionsSet === false) {
+      this.setOptions();
+      this.setState({optionsSet: true});
+    }
   }
 
   drawIfRequired(v) {

@@ -9,8 +9,12 @@ class MovesList extends Component {
 
   constructor(props) {
     super(props);
+    let {options}= props;
+    if (options == null) {
+	options = [];
+    }
     this.state = {
-      options: [],
+      options: options,
       moves: [],
       playing: false,
       move_index: 1
@@ -45,20 +49,24 @@ class MovesList extends Component {
       (v,k) => {
         return (
           <div>
-          <span>{k}.<img key={k} src={v.src} alt=''/>{
-            (()=>{
-              if (isPlaying) {
-                if (moveIndex === k) {
-                  return (<img key={k} src='img/arrow.png' alt=''/>);
-                }
-              } else {
-                return (<img key={k} src='img/delete.png' onClick={this.deleteClick.bind(this, v.id)} alt=''/>);
+            <span>{k}.<img key={k} src={v.src} alt=''/>
+              {
+                (()=>{
+                  if (isPlaying) {
+                    if (moveIndex === k) {
+                      return (<img key={k} src='img/arrow.png' alt=''/>);
+                    }
+                  } else {
+                    return (
+                      <img key={k} src='img/delete.png' onClick={this.deleteClick.bind(this, v.id)} alt=''/>
+                    );
+                  }
+                })()
               }
-            })()
-          }</span></div>
+            </span>
+          </div>
         );
-      }
-    );
+      });
 
     return (
       <div className='codepane'>
